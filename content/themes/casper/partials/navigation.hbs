@@ -1,0 +1,7 @@
+<nav class="main-nav overlay clearfix">
+    {{#if navigation}}
+        {{#foreach navigation}}
+            <a class="menu-button {{#if current}}menu-button-current{{/if}}" href="{{url absolute="true"}}">{{label}}</a>
+        {{/foreach}}
+    {{/if}}
+</nav>
