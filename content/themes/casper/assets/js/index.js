@@ -32,7 +32,7 @@
                 var fromtons = [];
                 for(var i = 0; i < 50; i++) { 
                     // create a new Sprite using the texture
-                    var fromton = new PIXI.Sprite.fromImage('../assets/images/fromtons/'+Math.floor(Math.random()*2+3)+'.png');
+                    var fromton = new PIXI.Sprite.fromImage('../assets/images/fromtons/'+Math.floor(Math.random()*4+1)+'.png');
 
                     // center the sprites anchor point
                     fromton.anchor.x = 0.5;
