@@ -209,7 +209,7 @@ h4, h5, h6 {
     -webkit-font-feature-settings: 'dlig' 1, 'liga' 1, 'lnum' 1, 'kern' 1;
     -moz-font-feature-settings: 'dlig' 1, 'liga' 1, 'lnum' 1, 'kern' 1;
     -o-font-feature-settings: 'dlig' 1, 'liga' 1, 'lnum' 1, 'kern' 1;
-    color: #2E2E2E;
+    color: #CF4164;
     line-height: 1.15em;
     margin: 0 0 0.4em 0;
     font-family: "Open Sans", sans-serif;
@@ -244,7 +244,7 @@ h6 {
 }
 
 a {
-    color: #4A4A4A;
+    color: #CF4164;
     transition: color 0.3s ease;
 }
 
@@ -517,7 +517,31 @@ body.nav-opened .site-wrapper {
     width: 80%;
 }
 
+.main-header > * {
+    z-index: 2;
+    position: relative;
+}
+
+.main-header canvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 4;
+    pointer-events: none;
+}
+
+.post-template .main-header:before, .author-template .main-header:before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 218, 164, 0.7);
+}
+
 .main-nav {
+    z-index: 3;
     position: relative;
     padding: 35px 40px;
     margin: 0 0 30px 0;
@@ -820,7 +844,7 @@ body.nav-opened .nav {
     top: 1px;
 }
 .menu-button:hover, .menu-button.menu-button-current {
-    background: #fff;
+    background: #CF4164;
 }
 .menu-button:focus {
     outline: 0;
@@ -828,21 +852,22 @@ body.nav-opened .nav {
 
 /* When the navigation is closed */
 .nav-closed .menu-button {
-    color: #fff;
-    border-color: rgba(255, 255, 255, 0.6);
+    color: #CF4164;
+    border-color: #CF4164;
 }
 .nav-closed .menu-button:hover, .nav-closed .menu-button.menu-button-current {
-    color: #222;
+    color: white;
+    background: #CF4164;
 }
 
 /* When the navigation is closed and there is no cover image */
 .nav-closed .no-cover .menu-button {
-    border-color: #BFC8CD;
-    color: #9EABB3;
+    border-color: #CF4164;
+    color: #CF4164;
 }
 .nav-closed .no-cover .menu-button:hover, .nav-closed .no-cover .menu-button.menu-button-current {
-    border-color: #555;
-    color: #555;
+    color: white;
+    background: #CF4164;
 }
 
 /* When the navigation is opened */
@@ -870,7 +895,6 @@ body:not(.author-template) .main-nav.overlay {
     right: 0;
     height: 70px;
     border: none;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%,rgba(0,0,0,0) 100%);
 }
 body:not(.author-template) .no-cover .main-nav.overlay {
     background: none;
@@ -898,16 +922,16 @@ body:not(.author-template) .no-cover .main-nav.overlay {
 
 .no-cover.main-header {
     min-height: 160px;
-    max-height: 40vh;
-    background: #f5f8fa;
+    /*max-height: 40vh;*/
+    background: #FFDAA4;
 }
 
 .no-cover .page-title {
-    color: rgba(0,0,0,0.8);
+    color: #CF4164;
 }
 
 .no-cover .page-description {
-    color: rgba(0,0,0,0.5);
+    color: #CF4164;
 }
 
 /* Add subtle load-in animation for content on the home page */
@@ -1789,12 +1813,12 @@ body:not(.post-template) .post-title {
         padding: 0 5px;
         border-radius: 0;
         border-width: 0;
-        color: #2e2e2e;
+        color: #CF4164;
         background: transparent;
     }
     .menu-button:hover {
-        color: #2e2e2e;
-        border-color: transparent;
+        color: white;
+        border-color: #CF4164;
         background: none;
     }
 
