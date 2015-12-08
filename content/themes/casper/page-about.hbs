@@ -1,0 +1,77 @@
+{{!< default}}
+
+{{! This is a page template. A page outputs content just like any other post, and has all the same
+    attributes by default, but you can also customise it to behave differently if you prefer. }}
+
+{{! Everything inside the #post tags pulls data from the page }}
+{{#post}}
+
+{{! The tag above means - insert everything in this file into the {body} of the default.hbs template }}
+
+{{! The big featured header }}
+<header class="main-header {{#if image}}" style="background-image: url({{image}});{{else}}no-cover{{/if}}">
+    
+    {{navigation}}
+
+    <div class="vertical">
+        <div class="main-header-content inner">
+            <h1 class="page-title">{{@blog.title}}</h1>
+            <h2 class="page-description">{{title}}</h2>
+        </div>
+    </div>
+    <a class="scroll-down icon-arrow-left" href="#content" data-offset="-45"><span class="hidden">Scroll Down</span></a>
+</header>
+
+<main class="content" role="main">
+    <article class="{{post_class}}">
+
+        <section class="post-content">
+            {{content}}
+        </section>
+
+        <div class="about-team-wrapper">
+            <div class="about-team-member">
+                <div class="aligncenter">
+                    <div class="about-team-member-image">
+                        <img class="circled" src="/assets/images/members/noemie.jpg"/>
+                        <img class="about-team-member-fromton" src="/assets/images/fromtons/1.png"/>
+                    </div>
+                </div>
+                <h3>Noémie Diaz</h3>
+                <span class="about-team-member-role">Chef de projet</span>
+            </div>
+            <div class="about-team-member">
+                <div class="aligncenter">
+                    <div class="about-team-member-image">
+                        <img class="circled" src="/assets/images/members/marion.jpg"/>
+                        <img class="about-team-member-fromton" src="/assets/images/fromtons/3.png"/>
+                    </div>
+                </div>
+                <h3>Marion DesVilettes</h3>
+                <span class="about-team-member-role">Conceptrice</span>
+            </div>
+            <div class="about-team-member">
+                <div class="aligncenter">
+                    <div class="about-team-member-image">
+                        <img class="circled" src="/assets/images/members/camille.jpg"/>
+                        <img class="about-team-member-fromton" src="/assets/images/fromtons/2.png"/>
+                    </div>
+                </div>
+                <h3>Camille Lheritier</h3>
+                <span class="about-team-member-role">Directrice artistique</span>
+            </div>
+            <div class="about-team-member">
+                <div class="aligncenter">
+                    <div class="about-team-member-image">
+                        <img class="circled" src="/assets/images/members/jeremy.jpg"/>
+                        <img class="about-team-member-fromton" src="/assets/images/fromtons/4.png"/>
+                    </div>
+                </div>
+                <h3>Jérémy Minié</h3>
+                <span class="about-team-member-role">Directeur technique</span>
+            </div>
+        </div>
+
+    </article>
+</main>
+{{/post}}

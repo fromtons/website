@@ -30,7 +30,7 @@
                 requestAnimationFrame( animate ); 
 
                 var fromtons = [];
-                for(var i = 0; i < 50; i++) { 
+                for(var i = 0; i < 40; i++) { 
                     // create a new Sprite using the texture
                     var fromton = new PIXI.Sprite.fromImage('../assets/images/fromtons/'+Math.floor(Math.random()*4+1)+'.png');
 
