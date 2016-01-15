@@ -1133,6 +1133,11 @@ body:not(.post-template) .post-title {
     transform: translateX(-50%);
 }
 
+.post-content iframe {
+    max-width: 100%;
+    margin: auto;
+}
+
 .footnotes {
     font-style: italic;
     font-size: 1.3rem;
