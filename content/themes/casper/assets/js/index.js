@@ -11,28 +11,36 @@
     $document.ready(function () {
 
         var app = {
+            stage: null,
+            animating: false,
+            fromtons: [],
+            renderer: null,
             canvas: document.getElementById("fromtons-particles"),
 
             init: function() {
                 this.bindUIActions();
-
-                console.dir(this.canvas);
-
                 this.registerCanvas();
+
+                $(window).on('resize', this.registerCanvas.bind(this));
             },
 
             registerCanvas: function() {
                 // create an new instance of a pixi stage
-                var stage = new PIXI.Stage(0x66FF99);
+                if(!this.stage) this.stage = new PIXI.Stage(0x66FF99);
+                else for (var i = this.stage.children.length - 1; i >= 0; i--) {	this.stage.removeChild(this.stage.children[i]);};
+                this.renderer = PIXI.autoDetectRenderer(this.canvas.clientWidth, this.canvas.clientHeight, { view: this.canvas, resolution: 2, transparent: true }, false, true);
+                if(!this.animating) requestAnimationFrame( animate.bind(this) );
 
-                var renderer = PIXI.autoDetectRenderer(this.canvas.clientWidth, this.canvas.clientHeight, { view: this.canvas, resolution: 2, transparent: true }, false, true);
+                this.fromtons = [];
 
-                requestAnimationFrame( animate ); 
+                var nbOfParticles;
+                if(window.innerWidth > 1024) nbOfParticles = 60;
+                else if(window.innerWidth > 640) nbOfParticles = 40;
+                else nbOfParticles = 20;
 
-                var fromtons = [];
-                for(var i = 0; i < 40; i++) { 
+                for(var i = 1; i <= nbOfParticles; i++) {
                     // create a new Sprite using the texture
-                    var fromton = new PIXI.Sprite.fromImage('../assets/images/fromtons/'+Math.floor(Math.random()*4+1)+'.png');
+                    var fromton = new PIXI.Sprite.fromImage('../assets/images/fromtons/'+(i%20)+'.png');
 
                     // center the sprites anchor point
                     fromton.anchor.x = 0.5;
@@ -41,11 +49,9 @@
                     fromton.scale.x = 0.2;
                     fromton.scale.y = 0.2;
 
-                    console.log(renderer);
-                 
                     // move the sprite t the center of the screen
-                    fromton.position.x = Math.floor(Math.random()*renderer.width/2);
-                    fromton.position.y = Math.floor(Math.random()*renderer.height/2);
+                    fromton.position.x = Math.floor(Math.random()*this.renderer.width/2);
+                    fromton.position.y = Math.floor(Math.random()*this.renderer.height/2);
 
                     fromton.rotation = Math.random()*Math.PI;
 
@@ -54,30 +60,30 @@
                         y: (Math.random()*2-1)*0.5,
                         rotation: (Math.random()*2-1)*0.01
                     };
-                 
-                    stage.addChild(fromton);
-                    fromtons.push(fromton);
+
+                    this.stage.addChild(fromton);
+                    this.fromtons.push(fromton);
                 }
 
                 function animate() {
-             
-                    requestAnimationFrame( animate );
+                    this.animating=true;
+                    requestAnimationFrame( animate.bind(this) );
                     var fromton;
-                    for(var i = 0; i < fromtons.length; i++) {
-                        fromton = fromtons[i];
+                    for(var i = 0; i < this.fromtons.length; i++) {
+                        fromton = this.fromtons[i];
 
                         fromton.rotation += fromton.velocity.rotation;
                         fromton.position.x+=fromton.velocity.x;
                         fromton.position.y+=fromton.velocity.y;
 
-                        if(fromton.position.x < -100) fromton.position.x = renderer.width/renderer.resolution+100;
-                        if(fromton.position.x > renderer.width/renderer.resolution+100) fromton.position.x = -100;
-                        if(fromton.position.y < -100) fromton.position.y = renderer.height/renderer.resolution+100;
-                        if(fromton.position.y > renderer.height/renderer.resolution+100) fromton.position.y = -100;                 
+                        if(fromton.position.x < -100) fromton.position.x = this.renderer.width/this.renderer.resolution+100;
+                        if(fromton.position.x > this.renderer.width/this.renderer.resolution+100) fromton.position.x = -100;
+                        if(fromton.position.y < -100) fromton.position.y = this.renderer.height/this.renderer.resolution+100;
+                        if(fromton.position.y > this.renderer.height/this.renderer.resolution+100) fromton.position.y = -100;
                     }
 
-                    // render the stage   
-                    renderer.render(stage);
+                    // render the stage
+                    this.renderer.render(this.stage);
                 }
             },
 

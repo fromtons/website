@@ -10,13 +10,18 @@
 
 {{! The big featured header }}
 <header class="main-header {{#if image}}" style="background-image: url({{image}});{{else}}no-cover{{/if}}">
-    
+
+    {{#if image}}{{else}}<canvas id="fromtons-particles"></canvas>{{/if}}
+
     {{navigation}}
 
     <div class="vertical">
         <div class="main-header-content inner">
-            <h1 class="page-title">{{@blog.title}}</h1>
-            <h2 class="page-description">{{title}}</h2>
+            {{#if @blog.logo}}
+              <h1 class="page-title page-title--logo" style="background-image: url({{@blog.logo}});">{{@blog.title}}</h1>
+            {{else}}
+              <h1 class="page-title">{{@blog.title}}</h1>
+            {{/if}}
         </div>
     </div>
     <a class="scroll-down icon-arrow-left" href="#content" data-offset="-45"><span class="hidden">Scroll Down</span></a>
@@ -30,11 +35,11 @@
         </section>
 
         <div class="about-team-wrapper aligncenter">
-            <div class="about-team-member">            
+            <div class="about-team-member">
                 <div class="about-team-member-image">
                     <img class="circled" src="/assets/images/members/noemie.jpg"/>
-                    <img class="about-team-member-fromton" src="/assets/images/fromtons/1.png"/>
-                </div>        
+                    <img class="about-team-member-fromton" src="/assets/images/fromtons/1_old.png"/>
+                </div>
                 <h3>Noémie Diaz</h3>
                 <span class="about-team-member-role">Chef de projet</span>
             </div>
@@ -42,7 +47,7 @@
                 <div class="aligncenter">
                     <div class="about-team-member-image">
                         <img class="circled" src="/assets/images/members/marion.jpg"/>
-                        <img class="about-team-member-fromton" src="/assets/images/fromtons/3.png"/>
+                        <img class="about-team-member-fromton" src="/assets/images/fromtons/3_old.png"/>
                     </div>
                 </div>
                 <h3>Marion Desvilettes</h3>
@@ -52,7 +57,7 @@
                 <div class="aligncenter">
                     <div class="about-team-member-image">
                         <img class="circled" src="/assets/images/members/camille.jpg"/>
-                        <img class="about-team-member-fromton" src="/assets/images/fromtons/2.png"/>
+                        <img class="about-team-member-fromton" src="/assets/images/fromtons/2_old.png"/>
                     </div>
                 </div>
                 <h3>Camille Lhéritier</h3>
@@ -62,7 +67,7 @@
                 <div class="aligncenter">
                     <div class="about-team-member-image">
                         <img class="circled" src="/assets/images/members/jeremy.jpg"/>
-                        <img class="about-team-member-fromton" src="/assets/images/fromtons/4.png"/>
+                        <img class="about-team-member-fromton" src="/assets/images/fromtons/4_old.png"/>
                     </div>
                 </div>
                 <h3>Jérémy Minié</h3>
